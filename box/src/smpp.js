@@ -78,12 +78,7 @@ async function sendMessage(senderId, receivers = [], message) {
     console.error('Error connecting to SMPP server:', error);
     response.summary = 'Error connecting to SMPP server';
   }
-
-  setTimeout(() => {
     return response;
-    
-  }, 15000);
-
 }
 
 module.exports = sendMessage
