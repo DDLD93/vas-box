@@ -1,6 +1,7 @@
 require("./connections/mongodb")();
 const express = require('express');
 const morgan = require('morgan');
+const cors = require("cors")
 
 
 
@@ -11,6 +12,7 @@ const port = 3000;
 
 // Use Morgan for logging HTTP requests
 app.use(morgan('dev'));
+app.use(cors())
 
 // Parse JSON request bodies
 app.use(express.json());

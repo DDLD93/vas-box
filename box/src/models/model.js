@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const MeessageSchema = new Schema({
-    title: { type: String, index: { unique: true, } },
+    title: { type: String },
     senderId: { type: String },
     recepients: {
         type: [{
