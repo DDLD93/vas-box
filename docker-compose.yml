@@ -1,0 +1,17 @@
+version: "3.8"
+services:
+    
+  api:
+    build: ./box
+    container_name: api
+    restart: always
+    environment:
+      APP_PORT: "${APP_PORT}"
+      MONGODB_URL: ${MONGO_URI}
+    # volumes:
+    #   - $PWD/STORAGE/build:/app/src/build
+    networks:
+      - nonicoms-net     
+networks:
+  nonicoms-net:
+    external: true 

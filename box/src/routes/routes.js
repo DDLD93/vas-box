@@ -2,7 +2,7 @@ const multer = require('multer'); // Middleware for handling file uploads
 const upload = multer({ dest: 'uploads/' });
 const parse = require("../controllers/csv-parser");
 const sendMessage = require("../controllers/smpp");
-const MsgCTRL = require("message.controller")
+const MsgCTRL = require("../controllers/message.controller")
 
 module.exports = (express) => {
     api = express.Router();
@@ -23,7 +23,7 @@ module.exports = (express) => {
 
         }
 
-    })
+    });
     api.post('/vas-box/sms', async (req, res) => {
         // Extract data from request body
         const { senderId, receivers, message } = req.body;
@@ -50,8 +50,6 @@ module.exports = (express) => {
         } else {
             res.status(500).json({ ok, data, error });
         }
-
-
     });
 
     api.get('/:id', async (req, res) => {
