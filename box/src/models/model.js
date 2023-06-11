@@ -4,6 +4,7 @@ const Schema = mongoose.Schema;
 const MeessageSchema = new Schema({
     title: { type: String },
     senderId: { type: String },
+    messageType: { type: String },
     recepients: {
         type: [{
             phone: { type: String },

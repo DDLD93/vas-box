@@ -18,12 +18,16 @@ app.use(cors())
 app.use(express.json());
 
 // POST route
-app.use("/api/v1",require("./routes/routes")(express))
+app.use("/api/v1/vas",require("./routes/routes")(express))
 
 // Error handling middleware
 app.use((err, req, res, next) => {
     console.error(err);
     res.status(500).json({ error: 'Internal Server Error' });
+});
+
+app.use((err, req, res, next) => {
+    res.status(404).json({ error: 'Route not found' });
 });
 
 // Start the server

@@ -36,7 +36,6 @@ async function parse(path) {
 
         await new Promise((resolve, reject) => {
             stream.on('end', () => {
-                console.log('ended');
                 resolve();
             });
             stream.on('error', reject);
@@ -46,7 +45,7 @@ async function parse(path) {
 
         return { ok: true, results, summary };
     } catch (error) {
-        throw new Error('Failed to parse CSV file: ' + error.message);
+        return { ok: false, error };
     }
 }
 
