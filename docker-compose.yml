@@ -1,15 +1,15 @@
 version: "3.8"
 services:
     
-  api:
+  vas-box:
     build: ./box
-    container_name: api
+    container_name: vas-box
     restart: always
     environment:
       APP_PORT: "${APP_PORT}"
       MONGODB_URL: ${MONGO_URI}
-    # volumes:
-    #   - $PWD/STORAGE/build:/app/src/build
+    volumes:
+      - $PWD/STORAGE/build:/app/src/uploads
     networks:
       - nonicoms-net     
 networks:

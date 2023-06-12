@@ -19,11 +19,12 @@ app.use(express.json());
 
 // POST route
 app.use("/api/v1/vas",require("./routes/routes")(express))
+app.use("/api/v1/user",require("./routes/user.route")(express))
 
 // Error handling middleware
 app.use((err, req, res, next) => {
     console.error(err);
-    res.status(500).json({ error: 'Internal Server Error' });
+    res.status(500).json({ error: err.message });
 });
 
 app.use((err, req, res, next) => {
