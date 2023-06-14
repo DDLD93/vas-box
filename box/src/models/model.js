@@ -5,6 +5,7 @@ const MeessageSchema = new Schema({
     title: { type: String },
     senderId: { type: String },
     messageType: { type: String },
+    message: { type: String },
     recepients: {
         type: [{
             phone: { type: String },
