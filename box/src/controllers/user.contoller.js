@@ -10,7 +10,6 @@ class UserCTRL {
 
     async registerLocal(data) {
         const { email, password } = data
-        console.log({email, password})
         try {
             const existingUser = await UserModel.exists({ email });
             if (existingUser) {

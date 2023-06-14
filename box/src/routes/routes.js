@@ -65,11 +65,11 @@ module.exports = (express) => {
     api.post('/', async (req, res) => {
         const body = req.body
 
-        const { ok, data, error } = await MsgCTRL.addMessage(body)
+        const { ok, data, error, vas_response } = await MsgCTRL.addMessage(body)
         if (ok) {
-            res.status(201).json({ ok, data, error });
+            res.status(201).json({ ok, data, error, vas_response});
         } else {
-            res.status(500).json({ ok: false, error });
+            res.status(500).json({ ok: false, error, vas_response });
         }
     });
 

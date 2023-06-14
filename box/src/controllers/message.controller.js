@@ -1,15 +1,18 @@
 const MsgModel = require("../models/model");
+const smpp = require("../controllers/smpp")
+
 class MsgCTRL {
     constructor() {
 
     }
     async addMessage(data) {
-        let newMsgs = new MsgModel(data)
         try {
-            let data = await newMsgs.save()
-            return { ok: true, data }
+            let newMsgs = new MsgModel(data)
+            let message = await newMsgs.save()
+            let recepients = message.recepients.map((recepient) => (recepient.phone));
+            let response = await smpp(message.senderId, recepients, message.message)
+            return { ok: true, data: message, vas_response: response }
         } catch (error) {
-            console.log(error)
             return { ok: false, error }
         }
     }
