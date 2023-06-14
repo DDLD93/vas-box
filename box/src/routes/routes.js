@@ -41,8 +41,6 @@ module.exports = (express) => {
     });
 
 
-
-
     api.get('/', async (req, res) => {
         const { ok, data, error } = await MsgCTRL.getMessages()
         if (ok) {
