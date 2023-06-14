@@ -10,28 +10,21 @@ class UserCTRL {
 
     async registerLocal(data) {
         const { email, password } = data
+        console.log({email, password})
         try {
             const existingUser = await UserModel.exists({ email });
-
             if (existingUser) {
                 return { ok: false, message: "Email is already registered" };
             }
-
             const hashedPassword = await bcrypt.hash(password, 10);
-
             Object.assign(data, { password: hashedPassword});
             data.password = hashedPassword
-
-
             const newUser = new UserModel(data);
-
             const savedUser = await newUser.save();
 
 
             // Remove sensitive values from the savedUser object
             const { password: _, ...userWithoutPassword } = savedUser.toObject();
-
-
             return { ok: true, user: userWithoutPassword };
         } catch (error) {
             return { ok: false, error: error.message, message: "An error occurred during registration. Please try again later." };

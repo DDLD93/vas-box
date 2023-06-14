@@ -6,7 +6,6 @@ module.exports = (express) => {
 
     api.post('/register', async (req, res) => {
         const body = req.body
-
         const { ok, user, message, error } = await UserCTRL.registerLocal(body)
         if (ok) {
             res.status(201).json({ ok, user });
